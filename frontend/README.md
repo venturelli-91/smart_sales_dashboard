@@ -1,128 +1,129 @@
 # Sales Management Dashboard
 
-Um dashboard moderno e interativo para gerenciamento de vendas, desenvolvido com Next.js, React e TypeScript.
+A modern and interactive dashboard for sales management, developed with Next.js, React, and TypeScript.
 
-![Dashboard Preview](preview.png)
+## 📸 Preview
 
-## 🚀 Funcionalidades
+<div align="center">
+  <img src="https://github.com/venturelli-91/sales_dashboard/raw/main/frontend/public/images/Dashboard%201.png" alt="Dashboard Preview 1" width="400" height="225" />
+  <img src="https://github.com/venturelli-91/sales_dashboard/raw/main/frontend/public/images/Dashboard%202.png" alt="Dashboard Preview 2" width="400" height="225" />
+  <img src="https://github.com/venturelli-91/sales_dashboard/raw/main/frontend/public/images/Dashboard%203.png" alt="Dashboard Preview 3" width="400" height="225" />
+  <img src="https://github.com/venturelli-91/sales_dashboard/raw/main/frontend/public/images/Dashboard%204.png" alt="Dashboard Preview 4" width="400" height="225" />
+</div>
 
-- **Visão Geral de Vendas**
+## 🚀 Features
 
-  - Cards informativos com métricas principais
-  - Indicadores de tendência (alta/baixa)
-  - Valores monetários formatados em R$
+- **Sales Overview**
+  - Informative cards with key metrics
+  - Trend indicators (up/down)
+  - Currency values formatted in R$
 
-- **Gráficos Interativos**
+- **Interactive Charts**
+  - Sales evolution by year
+  - Historical average ticket
+  - Responsive visualizations
 
-  - Evolução de vendas por ano
-  - Ticket médio histórico
-  - Visualizações responsivas
+- **Seller Ranking**
+  - Table sorted by revenue
+  - Target percentage indicators
+  - Visual status by performance
 
-- **Ranking de Vendedores**
+- **Data Export**
+  - Excel export of chart data
+  - Seller ranking export
+  - Multiple sheets in Excel file
 
-  - Tabela ordenada por faturamento
-  - Indicadores de meta percentual
-  - Status visual por desempenho
+## 🛠️ Technologies Used
 
-- **Exportação de Dados**
-  - Exportação para Excel dos dados dos gráficos
-  - Exportação do ranking de vendedores
-  - Múltiplas abas no arquivo Excel
+<div align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Flowbite-764ABC?style=for-the-badge&logo=flowbite&logoColor=white" alt="Flowbite" />
+  <img src="https://img.shields.io/badge/Recharts-FF6384?style=for-the-badge&logo=recharts&logoColor=white" alt="Recharts" />
+  <img src="https://img.shields.io/badge/XLSX-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white" alt="XLSX" />
+  <img src="https://img.shields.io/badge/Zustand-764ABC?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
+</div>
 
-## 🛠️ Tecnologias Utilizadas
+## 📦 Installation
 
-- **Frontend**
-  - Next.js 15
-  - React 19
-  - TypeScript
-  - Tailwind CSS
-  - Flowbite React
-  - Recharts
-  - XLSX
-
-## 📦 Instalação
-
-1. Clone o repositório:
+1. Clone the repository:
 
 ```bash
-git clone [url-do-repositorio]
+git clone [repository-url]
 ```
 
-2. Instale as dependências:
+2. Install dependencies:
 
 ```bash
 cd frontend
 npm install
 ```
 
-3. Inicie o servidor de desenvolvimento:
+3. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-4. Acesse o projeto em:
+4. Access the project at:
 
 ```
 http://localhost:3000
 ```
 
-## 🎨 Estrutura do Projeto
+## 🎨 Project Structure
 
 ```
 frontend/
 ├── src/
-│   ├── components/     # Componentes reutilizáveis
-│   ├── tools/         # Utilitários e componentes específicos
-│   ├── stores/        # Gerenciamento de estado
-│   └── pages/         # Páginas da aplicação
-├── public/            # Arquivos estáticos
-└── package.json       # Dependências e scripts
+│   ├── components/     # Reusable components
+│   ├── tools/         # Utilities and specific components
+│   ├── stores/        # State management
+│   └── pages/         # Application pages
+├── public/            # Static files
+└── package.json       # Dependencies and scripts
 ```
 
-## 🔧 Principais Componentes
+## 🔧 Main Components
 
-- **Dashboard**: Página principal com todos os componentes
-- **GeneralSales**: Card de visão geral de vendas
-- **AchievementPercentage**: Card de alcance de meta
-- **MediumTicket**: Card de ticket médio
-- **SalesEvolutionChart**: Gráfico de evolução de vendas
-- **TicketChart**: Gráfico de ticket médio
-- **RankingTable**: Tabela de ranking de vendedores
-- **ExportExcel**: Componentes de exportação para Excel
+- **Dashboard**: Main page with all components
+- **GeneralSales**: Sales overview card
+- **AchievementPercentage**: Target achievement card
+- **MediumTicket**: Average ticket card
+- **SalesEvolutionChart**: Sales evolution chart
+- **TicketChart**: Average ticket chart
+- **RankingTable**: Seller ranking table
+- **ExportExcel**: Excel export components
 
-## 📊 Dados e Estado
+## 📊 Data and State
 
-O projeto utiliza Zustand para gerenciamento de estado, com foco em:
+The project uses Zustand for state management, focusing on:
 
-- Dados de vendedores
-- Formatação de valores monetários
-- Cálculo de indicadores de desempenho
+- Seller data
+- Currency value formatting
+- Performance indicator calculation
 
-## 🎯 Próximos Passos
+## 🎯 Next Steps
 
-- [ ] Adicionar autenticação
-- [ ] Implementar filtros por período
-- [ ] Adicionar mais visualizações de dados
-- [ ] Melhorar responsividade
-- [ ] Adicionar testes automatizados
+- [ ] Implement period filters
+- [ ] Add more data visualizations
+- [ ] Improve responsiveness
+- [ ] Add automated tests
 
-## 🤝 Contribuição
+## 🤝 Contributing
 
-Contribuições são bem-vindas! Sinta-se à vontade para:
+Contributions are welcome! Feel free to:
 
-1. Abrir issues
-2. Sugerir melhorias
-3. Enviar pull requests
+1. Open issues
+2. Suggest improvements
+3. Submit pull requests
 
-## 📝 Licença
+## 📝 License
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-[Seu Nome] - [Seu Email]
-
----
-
-Desenvolvido com ❤️ para facilitar a gestão de vendas
+Aurélio Venturelli
