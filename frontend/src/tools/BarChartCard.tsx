@@ -38,11 +38,11 @@ const BarChartCard = React.memo(
 		height = 300,
 	}: BarChartCardProps<T>) => {
 		return (
-			<div className={CHART_CARD_CLASSES}>
-				{/* Chart title with accent bar */}
-				<div className="flex items-center gap-2 mb-4">
-					<span className="w-1 h-5 rounded-full bg-violet-500 inline-block" />
-					<h3 className={CHART_TITLE_CLASSES}>{title}</h3>
+		<div className={CHART_CARD_CLASSES + " dark:bg-slate-800"}>
+			{/* Chart title with accent bar */}
+			<div className="flex items-center gap-2 mb-4">
+				<span className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block" />
+				<h3 className={CHART_TITLE_CLASSES + " dark:text-white"}>{title}</h3>
 				</div>
 				<ResponsiveContainer width="100%" height={height}>
 					<BarChart data={data} margin={CHART_MARGIN}>

@@ -10,12 +10,12 @@ import { LazySalesEvolutionChart, LazyTicketChart } from "../tools/LazyCharts";
 
 const ChartSkeleton: React.FC<{ title?: string }> = ({ title }) => {
 	return (
-		<div className="bg-white p-4 rounded-lg shadow-md">
+		<div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
 			{title && (
-				<h3 className="text-lg font-bold mb-4 text-purple-900">{title}</h3>
+				<h3 className="text-lg font-bold mb-4 text-purple-900 dark:text-purple-300">{title}</h3>
 			)}
 			<div className="animate-pulse">
-				<div className="h-64 bg-gray-200 rounded"></div>
+				<div className="h-64 bg-gray-200 dark:bg-slate-700 rounded"></div>
 			</div>
 		</div>
 	);
@@ -97,7 +97,7 @@ const Dashboard: React.FC = () => {
 					data={data}
 					fileName="ranking_vendedores"
 					buttonText="Exportar Ranking"
-					className="flex items-center gap-2 rounded-full bg-violet-700 text-white text-sm font-semibold cursor-pointer hover:bg-violet-800 transition-colors duration-150 px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500"
+					className="flex items-center gap-2 rounded-full bg-violet-700 dark:bg-violet-600 text-white text-sm font-semibold cursor-pointer hover:bg-violet-800 dark:hover:bg-violet-500 transition-colors duration-150 px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 dark:focus:ring-violet-400"
 					aria-label="Exportar tabela de ranking de vendedores em formato Excel"
 				/>
 			</div>

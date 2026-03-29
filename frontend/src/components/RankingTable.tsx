@@ -37,14 +37,14 @@ const RankingTable: React.FC = () => {
 	};
 
 	return (
-		<div>
+		<div className="dark:bg-slate-900">
 			{/* Search & Filter Controls - following ui-ux-pro-max touch targets (44Ã—44px min) */}
 			<div className="mb-6 flex flex-col sm:flex-row gap-3 items-start sm:items-end">
 				{/* Search input */}
 				<div className="flex-1 min-w-0">
 					<label
 						htmlFor="seller-search"
-						className="block text-xs font-medium text-violet-900 mb-2">
+					className="block text-xs font-medium text-violet-900 dark:text-violet-300 mb-2">
 						Buscar Vendedor
 					</label>
 					<input
@@ -55,7 +55,7 @@ const RankingTable: React.FC = () => {
 						placeholder="Digite o nome do vendedor..."
 						aria-label="Buscar vendedores por nome"
 						aria-describedby="search-help"
-						className="w-full px-4 py-2.5 text-sm border border-violet-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-150"
+						className="w-full px-4 py-2.5 text-sm border border-violet-200 dark:border-violet-700 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 focus:border-transparent transition-all duration-150"
 					/>
 					<p
 						id="search-help"
@@ -68,7 +68,7 @@ const RankingTable: React.FC = () => {
 				<div className="flex flex-col gap-2">
 					<label
 						htmlFor="meta-filter"
-						className="block text-xs font-medium text-violet-900">
+					className="block text-xs font-medium text-violet-900 dark:text-violet-300">
 						Filtro de Meta
 					</label>
 					<select
@@ -76,7 +76,7 @@ const RankingTable: React.FC = () => {
 						value={metaFilter}
 						onChange={handleMetaFilterChange}
 						aria-label="Filtrar vendedores por status de meta"
-						className="px-4 py-2.5 text-sm border border-violet-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all duration-150 bg-white">
+					className="px-4 py-2.5 text-sm border border-violet-200 dark:border-violet-700 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 focus:border-transparent transition-all duration-150">
 						<option value="all">Todos</option>
 						<option value="success">â‰¥ 100% (Success)</option>
 						<option value="warning">85-99% (Aviso)</option>
@@ -89,7 +89,7 @@ const RankingTable: React.FC = () => {
 					<button
 						onClick={handleClearFilters}
 						aria-label="Limpar todos os filtros"
-						className="flex items-center justify-center gap-2 min-h-10 px-4 py-2.5 bg-violet-100 text-violet-700 hover:bg-violet-200 rounded-lg transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-violet-500 text-sm font-medium"
+						className="flex items-center justify-center gap-2 min-h-10 px-4 py-2.5 bg-violet-100 dark:bg-violet-900 text-violet-700 dark:text-violet-300 hover:bg-violet-200 dark:hover:bg-violet-800 rounded-lg transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 text-sm font-medium"
 						title="Limpar filtros">
 						<FaTimes size={14} />
 						<span>Limpar</span>
@@ -98,7 +98,7 @@ const RankingTable: React.FC = () => {
 			</div>
 
 			{/* Results counter */}
-			<div className="mb-3 text-sm text-gray-600">
+			<div className="mb-3 text-sm text-gray-600 dark:text-gray-400">
 				Mostrando <strong>{filteredData.length}</strong> de{" "}
 				<strong>{useTableStore((state) => state.data.length)}</strong>{" "}
 				vendedores
@@ -113,7 +113,8 @@ const RankingTable: React.FC = () => {
 								style={{
 									background:
 										"linear-gradient(90deg, #3d1f8a 0%, #6d28d9 100%)",
-								}}>
+								}}
+								className="dark:opacity-90">
 								<th
 									className={TABLE_HEADER_CLASSES}
 									aria-sort="none">
@@ -137,7 +138,7 @@ const RankingTable: React.FC = () => {
 								<th
 									className={TABLE_HEADER_CLASSES}
 									aria-sort="none">
-									Ticket MÃ©dio
+									Ticket Médio
 								</th>
 								<th
 									className={TABLE_HEADER_CLASSES}
@@ -147,7 +148,7 @@ const RankingTable: React.FC = () => {
 							</tr>
 						</TableHead>
 
-						<TableBody className="divide-y divide-violet-50">
+						<TableBody className="divide-y divide-violet-50 dark:divide-violet-900">
 							{filteredData.map((row, index) => (
 								<SellerTableRow
 									key={row.id}
