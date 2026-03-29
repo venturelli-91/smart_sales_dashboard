@@ -3,6 +3,7 @@ import { Select } from "flowbite-react";
 import { FaFilter, FaUser } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { useTableStore } from "../stores/tableStore";
+import { useTheme } from "../stores/themeStore";
 import ThemeToggle from "../components/ThemeToggle";
 
 // Month names mapping (Portugal/Brazil)
@@ -27,12 +28,35 @@ const MenuBar: React.FC = () => {
 	const selectedMonth = useTableStore((state) => state.selectedMonth);
 	const setSelectedYear = useTableStore((state) => state.setSelectedYear);
 	const setSelectedMonth = useTableStore((state) => state.setSelectedMonth);
+	const theme = useTheme();
 
 	// Memoize month name to avoid recalculation
 	const monthName = useMemo(
 		() => MONTH_NAMES[selectedMonth] || "Abril",
 		[selectedMonth],
 	);
+
+	// Memoize theme colors
+	const themeColors = useMemo(() => {
+		if (theme === "dark") {
+			return {
+				background:
+					"linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #334155 100%)",
+				overlay:
+					"radial-gradient(circle at 20% 50%, #475569 0%, transparent 50%), radial-gradient(circle at 80% 20%, #334155 0%, transparent 40%)",
+				fadeBottom:
+					"linear-gradient(to bottom, rgba(51,65,85,0.15), transparent)",
+			};
+		}
+		return {
+			background:
+				"linear-gradient(135deg, #2d1569 0%, #4c1d95 45%, #6d28d9 100%)",
+			overlay:
+				"radial-gradient(circle at 20% 50%, #a78bfa 0%, transparent 50%), radial-gradient(circle at 80% 20%, #7c3aed 0%, transparent 40%)",
+			fadeBottom:
+				"linear-gradient(to bottom, rgba(109,40,217,0.15), transparent)",
+		};
+	}, [theme]);
 
 	const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setSelectedYear(parseInt(e.target.value, 10));
@@ -46,10 +70,9 @@ const MenuBar: React.FC = () => {
 		<div className="relative">
 			{/* Gradient header panel */}
 			<div
-				className="absolute top-0 left-0 right-0 z-10 py-6"
+				className="absolute top-0 left-0 right-0 z-10 py-6 transition-all duration-300"
 				style={{
-					background:
-						"linear-gradient(135deg, #2d1569 0%, #4c1d95 45%, #6d28d9 100%)",
+					background: themeColors.background,
 					height: "clamp(220px, 28vh, 280px)",
 					minHeight: "220px",
 				}}>
@@ -57,9 +80,7 @@ const MenuBar: React.FC = () => {
 				<div
 					className="absolute inset-0 opacity-10"
 					style={{
-						backgroundImage:
-							"radial-gradient(circle at 20% 50%, #a78bfa 0%, transparent 50%), " +
-							"radial-gradient(circle at 80% 20%, #7c3aed 0%, transparent 40%)",
+						backgroundImage: themeColors.overlay,
 					}}
 				/>
 
@@ -186,8 +207,7 @@ const MenuBar: React.FC = () => {
 				{/* Bottom fade + spacer */}
 				<div
 					style={{
-						background:
-							"linear-gradient(to bottom, rgba(109,40,217,0.15), transparent)",
+						background: themeColors.fadeBottom,
 						height: "60px",
 					}}
 				/>
