@@ -6,7 +6,12 @@ import { ChartsExportExcel } from "../tools/ChartsExportExcel";
 import { useTableStore } from "../stores/tableStore";
 import { KPI_CARDS } from "../constants/kpiConfig";
 import { SALES_DATA, TICKET_DATA } from "../constants/chartData";
-import { LazySalesEvolutionChart, LazyTicketChart, LazyPieGraphics } from "../tools/LazyCharts";
+import { DASHBOARD_SECTIONS } from "../constants/dashboardLabels";
+import {
+	LazySalesEvolutionChart,
+	LazyTicketChart,
+	LazyPieGraphics,
+} from "../tools/LazyCharts";
 
 const ChartSkeleton: React.FC<{ title?: string }> = ({ title }) => {
 	return (
@@ -43,24 +48,29 @@ const Dashboard: React.FC = () => {
 			<div className="mt-10 mb-2">
 				<div className="flex items-center gap-2 mb-4">
 					<span
-						className="w-1 h-5 rounded-full bg-violet-500 inline-block"
+						className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block"
 						aria-hidden="true"
 					/>
 					<h2
-						className="text-sm font-semibold text-violet-900 uppercase tracking-widest"
-						id="historical-performance">
-						Desempenho Histórico
+						className="text-sm font-semibold text-violet-900 dark:text-violet-300 uppercase tracking-widest"
+						id={DASHBOARD_SECTIONS.historicalPerformance.id}>
+						{DASHBOARD_SECTIONS.historicalPerformance.title}
 					</h2>
 				</div>
 				<div
 					className="grid grid-cols-1 md:grid-cols-2 gap-6"
 					role="region"
-					aria-labelledby="historical-performance">
+					aria-labelledby={DASHBOARD_SECTIONS.historicalPerformance.id}>
 					<Suspense
-						fallback={<ChartSkeleton title="Evolução de Vendas por Ano" />}>
+						fallback={
+							<ChartSkeleton title={DASHBOARD_SECTIONS.salesEvolution.title} />
+						}>
 						<LazySalesEvolutionChart />
 					</Suspense>
-					<Suspense fallback={<ChartSkeleton title="Ticket Médio por Ano" />}>
+					<Suspense
+						fallback={
+							<ChartSkeleton title={DASHBOARD_SECTIONS.ticketAverage.title} />
+						}>
 						<LazyTicketChart />
 					</Suspense>
 				</div>
@@ -69,8 +79,14 @@ const Dashboard: React.FC = () => {
 			<div className="mt-8 mb-8 flex justify-end gap-4">
 				<ChartsExportExcel
 					sheets={[
-						{ data: SALES_DATA, sheetName: "Evolução de Vendas" },
-						{ data: TICKET_DATA, sheetName: "Ticket Médio" },
+						{
+							data: SALES_DATA,
+							sheetName: DASHBOARD_SECTIONS.salesEvolution.sheetName,
+						},
+						{
+							data: TICKET_DATA,
+							sheetName: DASHBOARD_SECTIONS.ticketAverage.sheetName,
+						},
 					]}
 				/>
 			</div>
@@ -83,16 +99,20 @@ const Dashboard: React.FC = () => {
 					/>
 					<h2
 						className="text-sm font-semibold text-violet-900 dark:text-violet-300 uppercase tracking-widest"
-						id="sales-distribution">
-						Distribuição de Vendas
+						id={DASHBOARD_SECTIONS.salesDistribution.id}>
+						{DASHBOARD_SECTIONS.salesDistribution.title}
 					</h2>
 				</div>
 				<div
 					className="grid grid-cols-1 md:grid-cols-1 gap-6"
 					role="region"
-					aria-labelledby="sales-distribution">
+					aria-labelledby={DASHBOARD_SECTIONS.salesDistribution.id}>
 					<Suspense
-						fallback={<ChartSkeleton title="Distribuição de Vendas" />}>
+						fallback={
+							<ChartSkeleton
+								title={DASHBOARD_SECTIONS.salesDistribution.title}
+							/>
+						}>
 						<LazyPieGraphics />
 					</Suspense>
 				</div>
@@ -101,18 +121,18 @@ const Dashboard: React.FC = () => {
 			<div className="mt-10 mb-12">
 				<div className="flex items-center gap-2 mb-4">
 					<span
-						className="w-1 h-5 rounded-full bg-violet-500 inline-block"
+						className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block"
 						aria-hidden="true"
 					/>
 					<h2
-						className="text-sm font-semibold text-violet-900 uppercase tracking-widest"
-						id="seller-ranking">
-						Ranking de Vendedores
+						className="text-sm font-semibold text-violet-900 dark:text-violet-300 uppercase tracking-widest"
+						id={DASHBOARD_SECTIONS.sellerRanking.id}>
+						{DASHBOARD_SECTIONS.sellerRanking.title}
 					</h2>
 				</div>
 				<div
 					role="region"
-					aria-labelledby="seller-ranking">
+					aria-labelledby={DASHBOARD_SECTIONS.sellerRanking.id}>
 					<Table />
 				</div>
 			</div>
@@ -120,8 +140,8 @@ const Dashboard: React.FC = () => {
 			<div className="mt-8 mb-8 flex justify-end">
 				<RankingExportExcel
 					data={data}
-					fileName="ranking_vendedores"
-					buttonText="Exportar Ranking"
+					fileName={DASHBOARD_SECTIONS.sellerRanking.fileName}
+					buttonText={DASHBOARD_SECTIONS.sellerRanking.exportButtonText}
 					className="flex items-center gap-2 rounded-full bg-violet-700 dark:bg-violet-600 text-white text-sm font-semibold cursor-pointer hover:bg-violet-800 dark:hover:bg-violet-500 transition-colors duration-150 px-5 py-2.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 dark:focus:ring-violet-400"
 					aria-label="Exportar tabela de ranking de vendedores em formato Excel"
 				/>

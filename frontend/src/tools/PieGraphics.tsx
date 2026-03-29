@@ -40,30 +40,26 @@ const PieGraphics: React.FC<PieGraphicsProps> = ({
 			{/* Chart title with accent bar */}
 			<div className="flex items-center gap-2 mb-4">
 				<span className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block" />
-				<h3 className={CHART_TITLE_CLASSES + " dark:text-white"}>
-					{title}
-				</h3>
+				<h3 className={CHART_TITLE_CLASSES + " dark:text-white"}>{title}</h3>
 			</div>
 
-			<ResponsiveContainer width="100%" height={height}>
+			<ResponsiveContainer
+				width="100%"
+				height={height}>
 				<PieChart>
 					<Pie
 						data={data}
 						cx="50%"
 						cy="50%"
 						labelLine={false}
-						label={({ name, value }) =>
-							`${name}: ${value}%`
-						}
+						label={({ name, value }) => `${name}: ${value}%`}
 						outerRadius={100}
 						fill="#8884d8"
 						dataKey="value">
 						{data.map((entry, index) => (
 							<Cell
 								key={`cell-${index}`}
-								fill={
-									COLORS[index % COLORS.length]
-								}
+								fill={COLORS[index % COLORS.length]}
 							/>
 						))}
 					</Pie>
@@ -72,8 +68,7 @@ const PieGraphics: React.FC<PieGraphicsProps> = ({
 						contentStyle={{
 							borderRadius: "12px",
 							border: "1px solid #ede9fe",
-							boxShadow:
-								"0 4px 16px rgba(109,40,217,0.1)",
+							boxShadow: "0 4px 16px rgba(109,40,217,0.1)",
 							fontFamily: "Jost, sans-serif",
 							fontSize: "13px",
 							backgroundColor: "#f8f7ff",
