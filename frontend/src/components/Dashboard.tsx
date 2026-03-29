@@ -7,7 +7,6 @@ import { useTableStore } from "../stores/tableStore";
 import { KPI_CARDS } from "../constants/kpiConfig";
 import { SALES_DATA, TICKET_DATA } from "../constants/chartData";
 import { LazySalesEvolutionChart, LazyTicketChart } from "../tools/LazyCharts";
-import { ChartsSuspense } from "./ChartsSuspense";
 
 const ChartSkeleton: React.FC<{ title?: string }> = ({ title }) => {
 	return (
@@ -25,16 +24,22 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<div className="container mx-auto px-4 md:px-12">
-			<div className="relative z-30 mt-10 sm:mt-0 md:-mt-20 lg:-mt-30">
+			<div className="relative z-30 mt-10 sm:mt-0 md:-mt-16 lg:-mt-24">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
 					{KPI_CARDS.map((card, index) => (
-						<GenericCard key={index} {...card} />
+						<GenericCard key={index} {...card} cardIndex={index} />
 					))}
 				</div>
 			</div>
 
-			<div className="mt-8 mb-8">
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+			<div className="mt-10 mb-2">
+				<div className="flex items-center gap-2 mb-4">
+					<span className="w-1 h-5 rounded-full bg-violet-500 inline-block" />
+					<h2 className="text-sm font-semibold text-violet-900 uppercase tracking-widest">
+						Desempenho Histórico
+					</h2>
+				</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 					<Suspense fallback={<ChartSkeleton title="Evolução de Vendas por Ano" />}>
 						<LazySalesEvolutionChart />
 					</Suspense>
@@ -53,10 +58,13 @@ const Dashboard: React.FC = () => {
 				/>
 			</div>
 
-			<div className="mt-8 mb-12">
-				<h3 className="text-xl font-bold mb-4 text-purple-900">
-					Ranking de Vendedores
-				</h3>
+			<div className="mt-10 mb-12">
+				<div className="flex items-center gap-2 mb-4">
+					<span className="w-1 h-5 rounded-full bg-violet-500 inline-block" />
+					<h2 className="text-sm font-semibold text-violet-900 uppercase tracking-widest">
+						Ranking de Vendedores
+					</h2>
+				</div>
 				<Table />
 			</div>
 
@@ -65,7 +73,7 @@ const Dashboard: React.FC = () => {
 					data={data}
 					fileName="ranking_vendedores"
 					buttonText="Exportar Ranking"
-					className="rounded-4xl bg-amber-700 text-white font-extrabold cursor-pointer"
+					className="flex items-center gap-2 rounded-full bg-violet-700 text-white text-sm font-semibold cursor-pointer hover:bg-violet-800 transition-colors duration-150 px-5 py-2.5"
 				/>
 			</div>
 		</div>

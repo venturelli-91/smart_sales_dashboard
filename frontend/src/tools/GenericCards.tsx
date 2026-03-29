@@ -1,6 +1,12 @@
 import React from "react";
 import { Card } from "flowbite-react";
-import { IoTriangle } from "react-icons/io5";
+import {
+	IoCashOutline,
+	IoStatsChartOutline,
+	IoReceiptOutline,
+	IoTrendingUp,
+	IoTrendingDown,
+} from "react-icons/io5";
 import { GENERIC_CARD_CLASSES } from "../constants/styles";
 
 export interface KPICardProps {
@@ -10,7 +16,10 @@ export interface KPICardProps {
 	bgColor?: string;
 	textColor?: string;
 	trend?: "up" | "down" | "neutral";
+	cardIndex?: number;
 }
+
+const CARD_ICONS = [IoCashOutline, IoStatsChartOutline, IoReceiptOutline];
 
 const GenericCard: React.FC<KPICardProps> = ({
 	title,
@@ -19,35 +28,53 @@ const GenericCard: React.FC<KPICardProps> = ({
 	bgColor = "white",
 	textColor = "black",
 	trend = "neutral",
+	cardIndex = 0,
 }) => {
-	const renderTrendIcon = () => {
-		if (trend === "up") {
-			return <IoTriangle className="text-green-500" />;
-		} else if (trend === "down") {
-			return <IoTriangle className="text-red-500 transform rotate-180" />;
-		}
-		return null;
-	};
+	const TrendIcon =
+		trend === "up" ? IoTrendingUp : trend === "down" ? IoTrendingDown : null;
+	const trendColor = trend === "up" ? "text-emerald-200" : "text-red-300";
+	const KpiIcon = CARD_ICONS[cardIndex % CARD_ICONS.length];
+
+	// Extract the percentage from description (e.g., "+15%" from "+15% em relação ao...")
+	const percentageMatch = description.match(/([+-]?\d+%)/);
+	const percentageText = percentageMatch ? percentageMatch[1] : "";
 
 	return (
 		<Card
 			className={GENERIC_CARD_CLASSES}
-			style={{ backgroundColor: bgColor }}>
-			<h5
-				className="text-2xl font-bold tracking-tight transition-all duration-300"
-				style={{ color: textColor }}>
-				{title}
-			</h5>
+			style={{ background: bgColor }}>
+			{/* Top row: icon chip + trend indicator */}
+			<div className="flex items-start justify-between mb-3">
+				<div className="bg-white/20 rounded-xl p-2.5">
+					<KpiIcon size={22} style={{ color: textColor }} />
+				</div>
+				{TrendIcon && (
+					<div className="flex items-center gap-1">
+						<TrendIcon size={16} className={trendColor} />
+						<span className={`text-xs font-medium ${trendColor}`}>
+							{percentageText}
+						</span>
+					</div>
+				)}
+			</div>
+
+			{/* Value */}
 			<p
-				className="font-bold text-3xl transition-all duration-300"
+				className="font-bold text-3xl tracking-tight leading-none mb-1"
 				style={{ color: textColor }}>
 				{value}
 			</p>
-			<div className="flex items-center gap-2">
-				{renderTrendIcon()}
-				<p
-					className="font-normal text-md transition-all duration-300"
-					style={{ color: textColor }}>
+
+			{/* Title */}
+			<h5
+				className="text-sm font-medium opacity-80 mb-2"
+				style={{ color: textColor }}>
+				{title}
+			</h5>
+
+			{/* Description — bottom separator line */}
+			<div className="pt-2 border-t border-white/20">
+				<p className="text-xs opacity-70" style={{ color: textColor }}>
 					{description}
 				</p>
 			</div>

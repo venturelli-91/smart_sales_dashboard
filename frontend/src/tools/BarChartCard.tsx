@@ -20,12 +20,13 @@ interface BarChartCardProps<T> {
 	barColor: string;
 	xAxisKey: string;
 	yAxisFormatter?: (value: number) => string;
-	tooltipFormatter?: (value: any) => string;
+	tooltipFormatter?: (value: string | number) => string;
 	height?: number;
 }
 
+// eslint-disable-next-line react/display-name
 const BarChartCard = React.memo(
-	<T extends Record<string, any>>({
+	<T extends Record<string, string | number>>({
 		title,
 		data,
 		dataKey,
@@ -38,13 +39,43 @@ const BarChartCard = React.memo(
 	}: BarChartCardProps<T>) => {
 		return (
 			<div className={CHART_CARD_CLASSES}>
-				<h3 className={CHART_TITLE_CLASSES}>{title}</h3>
+				{/* Chart title with accent bar */}
+				<div className="flex items-center gap-2 mb-4">
+					<span className="w-1 h-5 rounded-full bg-violet-500 inline-block" />
+					<h3 className={CHART_TITLE_CLASSES}>{title}</h3>
+				</div>
 				<ResponsiveContainer width="100%" height={height}>
 					<BarChart data={data} margin={CHART_MARGIN}>
-						<CartesianGrid strokeDasharray="3 3" />
-						<XAxis dataKey={xAxisKey} />
-						<YAxis tickFormatter={yAxisFormatter} />
-						<Tooltip formatter={tooltipFormatter} />
+						<CartesianGrid
+							strokeDasharray="3 3"
+							stroke="#ede9fe"
+							vertical={false}
+						/>
+						<XAxis
+							dataKey={xAxisKey}
+							tick={{ fill: "#6b7280", fontSize: 12 }}
+							axisLine={{ stroke: "#ede9fe" }}
+							tickLine={false}
+						/>
+						<YAxis
+							tickFormatter={yAxisFormatter}
+							tick={{ fill: "#6b7280", fontSize: 12 }}
+							axisLine={false}
+							tickLine={false}
+							width={70}
+						/>
+						<Tooltip
+							formatter={tooltipFormatter}
+							contentStyle={{
+								borderRadius: "12px",
+								border: "1px solid #ede9fe",
+								boxShadow:
+									"0 4px 16px rgba(109,40,217,0.1)",
+								fontFamily: "Jost, sans-serif",
+								fontSize: "13px",
+							}}
+							cursor={{ fill: "rgba(167,139,250,0.08)" }}
+						/>
 						<Legend />
 						<Bar
 							dataKey={dataKey}
@@ -57,7 +88,7 @@ const BarChartCard = React.memo(
 			</div>
 		);
 	}
-) as <T extends Record<string, any>>(
+) as <T extends Record<string, string | number>>(
 	props: BarChartCardProps<T>
 ) => React.ReactElement;
 

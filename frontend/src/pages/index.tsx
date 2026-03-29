@@ -5,13 +5,14 @@ import Footer from "../tools/Footer";
 
 const Home: React.FC = () => {
 	return (
-		<>
+		<div className="min-h-screen flex flex-col" style={{ background: "#f8f7ff" }}>
 			<MenuBar />
-			<main className="min-h-screen bg-gray-50 pt-10">
+			<main className="flex-1 pt-10">
 				<Dashboard />
 			</main>
 			<Footer />
-		</>
+		</div>
 	);
 };
+
 export default Home;

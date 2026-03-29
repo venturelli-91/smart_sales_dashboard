@@ -25,59 +25,42 @@ const Footer = () => {
 	}, []);
 
 	return (
-		<>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					minHeight: "10vh",
-				}}>
-				<FlowbiteFooter
-					container
-					style={{
-						marginTop: "auto",
-						backgroundColor: "rgb(76, 29, 149)",
-						color: "white",
-					}}>
-					<FooterCopyright
-						href="#"
-						by="Sales Management"
-						year={2025}
-						style={{ color: "white", fontWeight: "bold" }}
-					/>
-					<FooterLinkGroup>
-						<FooterLink
-							href="#"
-							className="mr-4 mt-2 font-bold">
-							Contato
-						</FooterLink>
+		<FlowbiteFooter
+			container
+			style={{
+				background:
+					"linear-gradient(135deg, #2d1569 0%, #4c1d95 60%, #6d28d9 100%)",
+				color: "white",
+				borderTop: "1px solid rgba(167,139,250,0.2)",
+			}}>
+			<FooterCopyright
+				href="#"
+				by="Sales Management"
+				year={2025}
+				style={{ color: "white", fontWeight: "bold" }}
+			/>
+			<FooterLinkGroup>
+				<FooterLink href="#" className="mr-4 mt-2 font-bold">
+					Contato
+				</FooterLink>
 
-						<div className="flex gap-4">
-							<BsLinkedin
-								size={30}
-								onClick={handleLinkedinClick}
-								className="cursor-pointer"
-							/>
-							<BsGithub
-								size={30}
-								onClick={handleGithubClick}
-								className="cursor-pointer"
-							/>
-							<BsWhatsapp
-								size={30}
-								onClick={handleWhatsappClick}
-								className="cursor-pointer"
-							/>
-							<BsInstagram
-								size={30}
-								onClick={handleInstagramClick}
-								className="cursor-pointer"
-							/>
-						</div>
-					</FooterLinkGroup>
-				</FlowbiteFooter>
-			</div>
-		</>
+				<div className="flex gap-3">
+					{[
+						{ Icon: BsLinkedin, handler: handleLinkedinClick },
+						{ Icon: BsGithub, handler: handleGithubClick },
+						{ Icon: BsWhatsapp, handler: handleWhatsappClick },
+						{ Icon: BsInstagram, handler: handleInstagramClick },
+					].map(({ Icon, handler }, i) => (
+						<button
+							key={i}
+							onClick={handler}
+							className="bg-white/10 hover:bg-white/20 transition-colors duration-150 p-2 rounded-lg border border-white/10 text-white/80 hover:text-white">
+							<Icon size={18} />
+						</button>
+					))}
+				</div>
+			</FooterLinkGroup>
+		</FlowbiteFooter>
 	);
 };
 

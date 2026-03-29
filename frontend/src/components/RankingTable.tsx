@@ -14,9 +14,9 @@ const Table: React.FC = () => {
 	return (
 		<div className={TABLE_CONTAINER_CLASSES}>
 			<FlowbiteTable hoverable>
-				<TableHead className="bg-purple-900 text-white">
-					<tr className="bg-[rgb(76,29,149)]">
-						<th className={TABLE_HEADER_CLASSES}>Ranking</th>
+				<TableHead>
+					<tr style={{ background: "linear-gradient(90deg, #3d1f8a 0%, #6d28d9 100%)" }}>
+						<th className={TABLE_HEADER_CLASSES}>#</th>
 						<th className={TABLE_HEADER_CLASSES}>Vendedor</th>
 						<th className={TABLE_HEADER_CLASSES}>Faturamento</th>
 						<th className={TABLE_HEADER_CLASSES}>Qtd</th>
@@ -25,7 +25,7 @@ const Table: React.FC = () => {
 					</tr>
 				</TableHead>
 
-				<TableBody className="divide-y">
+				<TableBody className="divide-y divide-violet-50">
 					{data.map((row, index) => (
 						<SellerTableRow key={row.id} seller={row} index={index} />
 					))}
