@@ -1,23 +1,31 @@
+/**
+ * @deprecated Use RankingExportExcel instead. This component is a duplicate.
+ * Safe to delete.
+ */
+
 import * as XLSX from "xlsx";
 import { Button } from "flowbite-react";
 import { FaFileExcel } from "react-icons/fa";
 
-interface Venda {
-	data: string;
-	valor: number;
-	produto: string;
-}
-
-interface ExportExcelProps {
-	data: Venda[];
+interface ExportExcelProps<T> {
+	data: T[];
 	fileName: string;
+	buttonText?: string;
+	className?: string;
+	sheetName?: string;
 }
 
-export const ExportExcel = ({ data, fileName }: ExportExcelProps) => {
+export const ExportExcel = <T extends Record<string, string | number>>({
+	data,
+	fileName,
+	buttonText = "Exportar .xlsx",
+	className = "",
+	sheetName = "Dados",
+}: ExportExcelProps<T>) => {
 	const exportToExcel = () => {
 		const ws = XLSX.utils.json_to_sheet(data);
 		const wb = XLSX.utils.book_new();
-		XLSX.utils.book_append_sheet(wb, ws, "Dados");
+		XLSX.utils.book_append_sheet(wb, ws, sheetName);
 		XLSX.writeFile(wb, `${fileName}.xlsx`);
 	};
 
@@ -25,9 +33,9 @@ export const ExportExcel = ({ data, fileName }: ExportExcelProps) => {
 		<Button
 			color="success"
 			onClick={exportToExcel}
-			className="flex items-center gap-2 rounded-4xl bg-amber-700 text-white font-extrabold cursor-pointer">
+			className={`flex items-center gap-2 rounded-4xl bg-amber-700 text-white font-extrabold cursor-pointer ${className}`}>
 			<FaFileExcel className="text-white" />
-			Exportar .xlsx
+			{buttonText}
 		</Button>
 	);
 };
