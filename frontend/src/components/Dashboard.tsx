@@ -6,13 +6,15 @@ import { ChartsExportExcel } from "../tools/ChartsExportExcel";
 import { useTableStore } from "../stores/tableStore";
 import { KPI_CARDS } from "../constants/kpiConfig";
 import { SALES_DATA, TICKET_DATA } from "../constants/chartData";
-import { LazySalesEvolutionChart, LazyTicketChart } from "../tools/LazyCharts";
+import { LazySalesEvolutionChart, LazyTicketChart, LazyPieGraphics } from "../tools/LazyCharts";
 
 const ChartSkeleton: React.FC<{ title?: string }> = ({ title }) => {
 	return (
 		<div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-md">
 			{title && (
-				<h3 className="text-lg font-bold mb-4 text-purple-900 dark:text-purple-300">{title}</h3>
+				<h3 className="text-lg font-bold mb-4 text-purple-900 dark:text-purple-300">
+					{title}
+				</h3>
 			)}
 			<div className="animate-pulse">
 				<div className="h-64 bg-gray-200 dark:bg-slate-700 rounded"></div>
@@ -71,6 +73,29 @@ const Dashboard: React.FC = () => {
 						{ data: TICKET_DATA, sheetName: "Ticket Médio" },
 					]}
 				/>
+			</div>
+
+			<div className="mt-10 mb-8">
+				<div className="flex items-center gap-2 mb-4">
+					<span
+						className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block"
+						aria-hidden="true"
+					/>
+					<h2
+						className="text-sm font-semibold text-violet-900 dark:text-violet-300 uppercase tracking-widest"
+						id="sales-distribution">
+						Distribuição de Vendas
+					</h2>
+				</div>
+				<div
+					className="grid grid-cols-1 md:grid-cols-1 gap-6"
+					role="region"
+					aria-labelledby="sales-distribution">
+					<Suspense
+						fallback={<ChartSkeleton title="Distribuição de Vendas" />}>
+						<LazyPieGraphics />
+					</Suspense>
+				</div>
 			</div>
 
 			<div className="mt-10 mb-12">

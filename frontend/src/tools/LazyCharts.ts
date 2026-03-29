@@ -8,3 +8,7 @@ export const LazySalesEvolutionChart = React.lazy(
 export const LazyTicketChart = React.lazy(
 	() => import("./TicketChart")
 );
+
+export const LazyPieGraphics = React.lazy(
+	() => import("./PieGraphics")
+);

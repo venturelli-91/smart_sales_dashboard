@@ -16,10 +16,7 @@ const RankingTable: React.FC = () => {
 	const getFilteredData = useTableStore((state) => state.getFilteredData);
 
 	// Memoize filtered data to avoid unnecessary recalculations
-	const filteredData = useMemo(
-		() => getFilteredData(),
-		[getFilteredData],
-	);
+	const filteredData = useMemo(() => getFilteredData(), [getFilteredData]);
 
 	const hasActiveFilters = searchQuery.length > 0 || metaFilter !== "all";
 
@@ -44,7 +41,7 @@ const RankingTable: React.FC = () => {
 				<div className="flex-1 min-w-0">
 					<label
 						htmlFor="seller-search"
-					className="block text-xs font-medium text-violet-900 dark:text-violet-300 mb-2">
+						className="block text-xs font-medium text-violet-900 dark:text-violet-300 mb-2">
 						Buscar Vendedor
 					</label>
 					<input
@@ -68,7 +65,7 @@ const RankingTable: React.FC = () => {
 				<div className="flex flex-col gap-2">
 					<label
 						htmlFor="meta-filter"
-					className="block text-xs font-medium text-violet-900 dark:text-violet-300">
+						className="block text-xs font-medium text-violet-900 dark:text-violet-300">
 						Filtro de Meta
 					</label>
 					<select
@@ -76,7 +73,7 @@ const RankingTable: React.FC = () => {
 						value={metaFilter}
 						onChange={handleMetaFilterChange}
 						aria-label="Filtrar vendedores por status de meta"
-					className="px-4 py-2.5 text-sm border border-violet-200 dark:border-violet-700 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 focus:border-transparent transition-all duration-150">
+						className="px-4 py-2.5 text-sm border border-violet-200 dark:border-violet-700 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 focus:border-transparent transition-all duration-150">
 						<option value="all">Todos</option>
 						<option value="success">â‰¥ 100% (Success)</option>
 						<option value="warning">85-99% (Aviso)</option>
@@ -174,4 +171,3 @@ const RankingTable: React.FC = () => {
 };
 
 export default React.memo(RankingTable);
-

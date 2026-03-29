@@ -38,14 +38,18 @@ const BarChartCard = React.memo(
 		height = 300,
 	}: BarChartCardProps<T>) => {
 		return (
-		<div className={CHART_CARD_CLASSES + " dark:bg-slate-800"}>
-			{/* Chart title with accent bar */}
-			<div className="flex items-center gap-2 mb-4">
-				<span className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block" />
-				<h3 className={CHART_TITLE_CLASSES + " dark:text-white"}>{title}</h3>
+			<div className={CHART_CARD_CLASSES + " dark:bg-slate-800"}>
+				{/* Chart title with accent bar */}
+				<div className="flex items-center gap-2 mb-4">
+					<span className="w-1 h-5 rounded-full bg-violet-500 dark:bg-violet-400 inline-block" />
+					<h3 className={CHART_TITLE_CLASSES + " dark:text-white"}>{title}</h3>
 				</div>
-				<ResponsiveContainer width="100%" height={height}>
-					<BarChart data={data} margin={CHART_MARGIN}>
+				<ResponsiveContainer
+					width="100%"
+					height={height}>
+					<BarChart
+						data={data}
+						margin={CHART_MARGIN}>
 						<CartesianGrid
 							strokeDasharray="3 3"
 							stroke="#ede9fe"
@@ -69,8 +73,7 @@ const BarChartCard = React.memo(
 							contentStyle={{
 								borderRadius: "12px",
 								border: "1px solid #ede9fe",
-								boxShadow:
-									"0 4px 16px rgba(109,40,217,0.1)",
+								boxShadow: "0 4px 16px rgba(109,40,217,0.1)",
 								fontFamily: "Jost, sans-serif",
 								fontSize: "13px",
 							}}
@@ -87,9 +90,9 @@ const BarChartCard = React.memo(
 				</ResponsiveContainer>
 			</div>
 		);
-	}
+	},
 ) as <T extends Record<string, string | number>>(
-	props: BarChartCardProps<T>
+	props: BarChartCardProps<T>,
 ) => React.ReactElement;
 
 export default BarChartCard;

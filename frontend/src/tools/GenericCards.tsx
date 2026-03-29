@@ -46,11 +46,17 @@ const GenericCard: React.FC<KPICardProps> = ({
 			{/* Top row: icon chip + trend indicator */}
 			<div className="flex items-start justify-between mb-3">
 				<div className="bg-white/20 dark:bg-white/10 rounded-xl p-2.5">
-					<KpiIcon size={22} style={{ color: textColor }} />
+					<KpiIcon
+						size={22}
+						style={{ color: textColor }}
+					/>
 				</div>
 				{TrendIcon && (
 					<div className="flex items-center gap-1">
-						<TrendIcon size={16} className={trendColor} />
+						<TrendIcon
+							size={16}
+							className={trendColor}
+						/>
 						<span className={`text-xs font-medium ${trendColor}`}>
 							{percentageText}
 						</span>
@@ -74,7 +80,9 @@ const GenericCard: React.FC<KPICardProps> = ({
 
 			{/* Description — bottom separator line */}
 			<div className="pt-2 border-t border-white/20 dark:border-white/10">
-				<p className="text-xs opacity-70 dark:opacity-60 dark:text-gray-300" style={{ color: textColor }}>
+				<p
+					className="text-xs opacity-70 dark:opacity-60 dark:text-gray-300"
+					style={{ color: textColor }}>
 					{description}
 				</p>
 			</div>
