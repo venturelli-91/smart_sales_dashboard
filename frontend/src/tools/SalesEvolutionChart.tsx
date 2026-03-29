@@ -9,31 +9,19 @@ import {
 	Legend,
 	ResponsiveContainer,
 } from "recharts";
-
-const salesData = [
-	{ year: "2020", vendas: 85000 },
-	{ year: "2021", vendas: 93500 },
-	{ year: "2022", vendas: 88700 },
-	{ year: "2023", vendas: 97200 },
-	{ year: "2024", vendas: 101500 },
-	{ year: "2025", vendas: 107080 },
-];
-
-const currencyFormatter = (value: number) =>
-	`R$ ${value.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+import { SALES_DATA } from "../constants/chartData";
+import { COLORS, CHART_MARGIN, CHART_RADIUS } from "../constants/theme";
+import { CHART_CARD_CLASSES, CHART_TITLE_CLASSES } from "../constants/styles";
+import { currencyFormatter } from "../utils/formatters";
 
 const SalesEvolutionChart: React.FC = () => {
 	return (
-		<div className="bg-white p-4 rounded-lg shadow-md">
-			<h3 className="text-lg font-bold mb-4 text-purple-900">
+		<div className={CHART_CARD_CLASSES}>
+			<h3 className={CHART_TITLE_CLASSES}>
 				Evolução de Vendas por Ano
 			</h3>
-			<ResponsiveContainer
-				width="100%"
-				height={300}>
-				<BarChart
-					data={salesData}
-					margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+			<ResponsiveContainer width="100%" height={300}>
+				<BarChart data={SALES_DATA} margin={CHART_MARGIN}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="year" />
 					<YAxis tickFormatter={(value) => `R$ ${value / 1000}k`} />
@@ -42,8 +30,8 @@ const SalesEvolutionChart: React.FC = () => {
 					<Bar
 						dataKey="vendas"
 						name="Vendas"
-						fill="#32CD32"
-						radius={[4, 4, 0, 0]}
+						fill={COLORS.success}
+						radius={CHART_RADIUS}
 					/>
 				</BarChart>
 			</ResponsiveContainer>
@@ -51,4 +39,4 @@ const SalesEvolutionChart: React.FC = () => {
 	);
 };
 
-export default SalesEvolutionChart;
+export default React.memo(SalesEvolutionChart);

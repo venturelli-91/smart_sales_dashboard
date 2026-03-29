@@ -1,8 +1,9 @@
 import React from "react";
 import { Card } from "flowbite-react";
 import { IoTriangle } from "react-icons/io5";
+import { GENERIC_CARD_CLASSES } from "../constants/styles";
 
-interface CardProps {
+export interface KPICardProps {
 	title: string;
 	description: string;
 	value: string;
@@ -11,7 +12,7 @@ interface CardProps {
 	trend?: "up" | "down" | "neutral";
 }
 
-const GenericCard: React.FC<CardProps> = ({
+const GenericCard: React.FC<KPICardProps> = ({
 	title,
 	description,
 	value,
@@ -29,31 +30,29 @@ const GenericCard: React.FC<CardProps> = ({
 	};
 
 	return (
-		<div className="w-full">
-			<Card
-				className="w-full hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-gray-500 hover:cursor-pointer border-none"
-				style={{ backgroundColor: bgColor }}>
-				<h5
-					className="text-2xl font-bold tracking-tight transition-all duration-300"
-					style={{ color: textColor }}>
-					{title}
-				</h5>
+		<Card
+			className={GENERIC_CARD_CLASSES}
+			style={{ backgroundColor: bgColor }}>
+			<h5
+				className="text-2xl font-bold tracking-tight transition-all duration-300"
+				style={{ color: textColor }}>
+				{title}
+			</h5>
+			<p
+				className="font-bold text-3xl transition-all duration-300"
+				style={{ color: textColor }}>
+				{value}
+			</p>
+			<div className="flex items-center gap-2">
+				{renderTrendIcon()}
 				<p
-					className="font-bold text-3xl transition-all duration-300"
+					className="font-normal text-md transition-all duration-300"
 					style={{ color: textColor }}>
-					{value}
+					{description}
 				</p>
-				<div className="flex items-center gap-2">
-					{renderTrendIcon()}
-					<p
-						className="font-normal text-md transition-all duration-300"
-						style={{ color: textColor }}>
-						{description}
-					</p>
-				</div>
-			</Card>
-		</div>
+			</div>
+		</Card>
 	);
 };
 
-export default GenericCard;
+export default React.memo(GenericCard);

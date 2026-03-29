@@ -9,31 +9,19 @@ import {
 	Legend,
 	ResponsiveContainer,
 } from "recharts";
-
-const ticketData = [
-	{ year: "2020", ticket: 89.3 },
-	{ year: "2021", ticket: 92.5 },
-	{ year: "2022", ticket: 97.8 },
-	{ year: "2023", ticket: 101.2 },
-	{ year: "2024", ticket: 105.6 },
-	{ year: "2025", ticket: 112.4 },
-];
-
-const currencyFormatter = (value: number) =>
-	`R$ ${value.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+import { TICKET_DATA } from "../constants/chartData";
+import { COLORS, CHART_MARGIN, CHART_RADIUS } from "../constants/theme";
+import { CHART_CARD_CLASSES, CHART_TITLE_CLASSES } from "../constants/styles";
+import { currencyFormatter } from "../utils/formatters";
 
 const TicketChart: React.FC = () => {
 	return (
-		<div className="bg-white p-4 rounded-lg shadow-md">
-			<h3 className="text-lg font-bold mb-4 text-purple-900">
+		<div className={CHART_CARD_CLASSES}>
+			<h3 className={CHART_TITLE_CLASSES}>
 				Ticket Médio por Ano
 			</h3>
-			<ResponsiveContainer
-				width="100%"
-				height={300}>
-				<BarChart
-					data={ticketData}
-					margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+			<ResponsiveContainer width="100%" height={300}>
+				<BarChart data={TICKET_DATA} margin={CHART_MARGIN}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="year" />
 					<YAxis tickFormatter={(value) => `R$ ${value}`} />
@@ -42,8 +30,8 @@ const TicketChart: React.FC = () => {
 					<Bar
 						dataKey="ticket"
 						name="Ticket Médio"
-						fill="#FA8072"
-						radius={[4, 4, 0, 0]}
+						fill={COLORS.warning}
+						radius={CHART_RADIUS}
 					/>
 				</BarChart>
 			</ResponsiveContainer>
@@ -51,4 +39,4 @@ const TicketChart: React.FC = () => {
 	);
 };
 
-export default TicketChart;
+export default React.memo(TicketChart);

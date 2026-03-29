@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { formatCurrency } from "../utils/formatters";
 
 export type Seller = {
 	id: number;
@@ -80,14 +81,7 @@ interface TableState {
 
 export const useTableStore = create<TableState>(() => ({
 	data: sortedData,
-
-	formatCurrency: (value: number) => {
-		return new Intl.NumberFormat("pt-BR", {
-			style: "currency",
-			currency: "BRL",
-		}).format(value);
-	},
-
+	formatCurrency,
 	getMetaStatusType: (percentual: number) => {
 		if (percentual >= 100) return "success";
 		if (percentual >= 85) return "warning";
