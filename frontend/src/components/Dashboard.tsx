@@ -148,10 +148,10 @@ const Dashboard: React.FC = () => {
 				/>
 			</div>
 
-		{/* Chart Modal for interactive drill-down */}
-		<ChartModal />
-	</div>
-);
+			{/* Chart Modal for interactive drill-down */}
+			<ChartModal />
+		</div>
+	);
 };
 
 export default Dashboard;

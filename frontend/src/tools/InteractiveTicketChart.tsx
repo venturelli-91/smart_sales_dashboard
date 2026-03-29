@@ -14,7 +14,7 @@ const InteractiveTicketChart: React.FC = () => {
 			year: parseInt(data.year, 10),
 			value: data.ticket,
 			details: {
-				"Ano": data.year,
+				Ano: data.year,
 				"Ticket Médio": data.ticket,
 			},
 		});

@@ -14,7 +14,7 @@ const InteractiveSalesEvolutionChart: React.FC = () => {
 			year: parseInt(data.year, 10),
 			value: data.vendas,
 			details: {
-				"Ano": data.year,
+				Ano: data.year,
 				"Faturamento Total": data.vendas,
 			},
 		});

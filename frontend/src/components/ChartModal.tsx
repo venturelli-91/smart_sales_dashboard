@@ -9,7 +9,10 @@ const ChartModal: React.FC = () => {
 	if (!data) return null;
 
 	return (
-		<Modal show={isOpen} onClose={closeModal} size="md">
+		<Modal
+			show={isOpen}
+			onClose={closeModal}
+			size="md">
 			<div className="dark:bg-slate-800">
 				{/* Header */}
 				<div className="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 px-6 py-4">
