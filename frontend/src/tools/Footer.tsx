@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
 	Footer as FlowbiteFooter,
 	FooterCopyright,
@@ -8,21 +8,21 @@ import {
 import { BsLinkedin, BsGithub, BsWhatsapp, BsInstagram } from "react-icons/bs";
 
 const Footer = () => {
-	const handleLinkedinClick = () => {
+	const handleLinkedinClick = useCallback(() => {
 		window.open("https://www.linkedin.com/in/aurelioventurelli/", "_blank");
-	};
+	}, []);
 
-	const handleGithubClick = () => {
+	const handleGithubClick = useCallback(() => {
 		window.open("https://github.com/venturelli-91", "_blank");
-	};
+	}, []);
 
-	const handleWhatsappClick = () => {
+	const handleWhatsappClick = useCallback(() => {
 		window.open("https://wa.me/5500000000000", "_blank");
-	};
+	}, []);
 
-	const handleInstagramClick = () => {
+	const handleInstagramClick = useCallback(() => {
 		window.open("https://www.instagram.com/pousadaencantoserra", "_blank");
-	};
+	}, []);
 
 	return (
 		<>
