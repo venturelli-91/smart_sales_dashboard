@@ -6,6 +6,7 @@ module.exports = {
 		"./src/**/*.{js,ts,jsx,tsx}",
 		"./node_modules/flowbite-react/**/*.js",
 	],
+	darkMode: "class", // Enable dark mode with class strategy
 	theme: {
 		extend: {
 			fontFamily: {

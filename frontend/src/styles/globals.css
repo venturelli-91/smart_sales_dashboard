@@ -3,6 +3,22 @@
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../../.flowbite-react/class-list.json";
 
+* {
+	@apply transition-colors duration-200;
+}
+
 body {
 	font-family: "Jost", sans-serif;
+	@apply bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100;
+}
+
+html.dark {
+	color-scheme: dark;
+}
+
+/* Smooth transitions for theme changes */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
 }

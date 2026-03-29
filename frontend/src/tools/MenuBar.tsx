@@ -3,6 +3,7 @@ import { Select } from "flowbite-react";
 import { FaFilter, FaUser } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import { useTableStore } from "../stores/tableStore";
+import ThemeToggle from "../components/ThemeToggle";
 
 // Month names mapping (Portugal/Brazil)
 const MONTH_NAMES: Record<number, string> = {
@@ -159,6 +160,9 @@ const MenuBar: React.FC = () => {
                                 title="Aplicar filtros">
                                 <FaFilter size={16} className="text-white" />
                             </button>
+
+                            {/* Theme Toggle */}
+                            <ThemeToggle />
 
                             {/* User profile button - icon-only with aria-label */}
                             <button
