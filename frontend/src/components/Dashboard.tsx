@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import GenericCard from "../tools/GenericCards";
 import Table from "./RankingTable";
+import ChartModal from "./ChartModal";
 import { RankingExportExcel } from "../tools/RankingExportExcel";
 import { ChartsExportExcel } from "../tools/ChartsExportExcel";
 import { useTableStore } from "../stores/tableStore";
@@ -8,8 +9,8 @@ import { KPI_CARDS } from "../constants/kpiConfig";
 import { SALES_DATA, TICKET_DATA } from "../constants/chartData";
 import { DASHBOARD_SECTIONS } from "../constants/dashboardLabels";
 import {
-	LazySalesEvolutionChart,
-	LazyTicketChart,
+	LazyInteractiveSalesEvolutionChart,
+	LazyInteractiveTicketChart,
 	LazyPieGraphics,
 } from "../tools/LazyCharts";
 
@@ -65,13 +66,13 @@ const Dashboard: React.FC = () => {
 						fallback={
 							<ChartSkeleton title={DASHBOARD_SECTIONS.salesEvolution.title} />
 						}>
-						<LazySalesEvolutionChart />
+						<LazyInteractiveSalesEvolutionChart />
 					</Suspense>
 					<Suspense
 						fallback={
 							<ChartSkeleton title={DASHBOARD_SECTIONS.ticketAverage.title} />
 						}>
-						<LazyTicketChart />
+						<LazyInteractiveTicketChart />
 					</Suspense>
 				</div>
 			</div>
@@ -146,8 +147,11 @@ const Dashboard: React.FC = () => {
 					aria-label="Exportar tabela de ranking de vendedores em formato Excel"
 				/>
 			</div>
-		</div>
-	);
+
+		{/* Chart Modal for interactive drill-down */}
+		<ChartModal />
+	</div>
+);
 };
 
 export default Dashboard;

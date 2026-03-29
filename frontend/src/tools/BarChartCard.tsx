@@ -22,6 +22,8 @@ interface BarChartCardProps<T> {
 	yAxisFormatter?: (value: number) => string;
 	tooltipFormatter?: (value: string | number) => string;
 	height?: number;
+	onBarClick?: (data: T) => void;
+	isInteractive?: boolean;
 }
 
 // eslint-disable-next-line react/display-name
@@ -36,6 +38,8 @@ const BarChartCard = React.memo(
 		yAxisFormatter,
 		tooltipFormatter,
 		height = 300,
+		onBarClick,
+		isInteractive = true,
 	}: BarChartCardProps<T>) => {
 		return (
 			<div className={CHART_CARD_CLASSES + " dark:bg-slate-800"}>
@@ -85,6 +89,12 @@ const BarChartCard = React.memo(
 							name={barName}
 							fill={barColor}
 							radius={CHART_RADIUS}
+							onClick={
+								isInteractive && onBarClick
+									? (e) => onBarClick(e.payload as T)
+									: undefined
+							}
+							cursor={isInteractive && onBarClick ? "pointer" : "default"}
 						/>
 					</BarChart>
 				</ResponsiveContainer>
