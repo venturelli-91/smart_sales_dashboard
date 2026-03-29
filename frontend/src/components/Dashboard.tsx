@@ -1,13 +1,24 @@
-import React from "react";
+import React, { Suspense } from "react";
 import GenericCard from "../tools/GenericCards";
-import SalesEvolutionChart from "../tools/SalesEvolutionChart";
-import TicketChart from "../tools/TicketChart";
 import Table from "./RankingTable";
 import { RankingExportExcel } from "../tools/RankingExportExcel";
 import { ChartsExportExcel } from "../tools/ChartsExportExcel";
 import { useTableStore } from "../stores/tableStore";
 import { KPI_CARDS } from "../constants/kpiConfig";
 import { SALES_DATA, TICKET_DATA } from "../constants/chartData";
+import { LazySalesEvolutionChart, LazyTicketChart } from "../tools/LazyCharts";
+import { ChartsSuspense } from "./ChartsSuspense";
+
+const ChartSkeleton: React.FC<{ title?: string }> = ({ title }) => {
+	return (
+		<div className="bg-white p-4 rounded-lg shadow-md">
+			{title && <h3 className="text-lg font-bold mb-4 text-purple-900">{title}</h3>}
+			<div className="animate-pulse">
+				<div className="h-64 bg-gray-200 rounded"></div>
+			</div>
+		</div>
+	);
+};
 
 const Dashboard: React.FC = () => {
 	const data = useTableStore((state) => state.data);
@@ -24,8 +35,12 @@ const Dashboard: React.FC = () => {
 
 			<div className="mt-8 mb-8">
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-					<SalesEvolutionChart />
-					<TicketChart />
+					<Suspense fallback={<ChartSkeleton title="Evolução de Vendas por Ano" />}>
+						<LazySalesEvolutionChart />
+					</Suspense>
+					<Suspense fallback={<ChartSkeleton title="Ticket Médio por Ano" />}>
+						<LazyTicketChart />
+					</Suspense>
 				</div>
 			</div>
 
